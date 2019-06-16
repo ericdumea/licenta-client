@@ -1,0 +1,156 @@
+<h1>Consumers overview</h1>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      One of three columns
+    </div>
+    <div class="col-lg-8">
+
+      <table class="table table-striped table-dark">
+        <thead>
+        <tr>
+          <!--          <th scope="col">#</th>-->
+          <th scope="col">Name</th>
+          <th scope="col">Max Price</th>
+          <th scope="col">Energy needed / 24H</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let consumer of consumerList" >
+          <!--          <th scope="row">{{provider.id}}</th>-->
+          <td>NAME PLACEHOLDER</td>
+          <td>{{consumer.price.toPrecision(4)}}</td>
+          <td>
+            <!--            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">-->
+            <!--              Graph-->
+            <!--            </button>-->
+            <ng-template #content let-modal>
+              <div class="modal-header">
+                <h4 class="modal-title" id="modal-basic-title">Provider #{{consumer.id}}</h4>
+                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                ...
+                <div style="display: block">
+                  <canvas baseChart
+                          [datasets]="dataSetGeneration(consumer.power)"
+                          [labels]="chartLabels"
+                          [legend]="barChartLegend"
+                          [options]="lineChartOptions"
+                          [chartType]="barChartType">
+                  </canvas>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close Graph')">Close</button>
+              </div>
+            </ng-template>
+            <button class="btn btn-outline-primary mb-2 mr-2" (click)="openLg(content)">Graph</button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+
+
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lectus sem, lacinia eget imperdiet id, commodo
+      non libero. Etiam lobortis suscipit convallis. Morbi semper libero turpis, et convallis nibh tristique et. Aliquam
+      varius fermentum quam, id elementum tellus tincidunt eget. Aliquam erat volutpat. Donec sed commodo erat. Nullam
+      congue neque eu metus rutrum, eu ornare lorem feugiat. Fusce laoreet pharetra interdum. Vestibulum ante ipsum
+      primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla sit amet facilisis libero, eu porttitor
+      sem. Aliquam quam dui, pharetra non blandit vel, vulputate eu lorem. Vivamus sit amet mollis nisl. Duis in
+      vehicula dolor, at placerat enim. Nulla non varius justo. Proin vitae porta neque, sed vehicula neque. Mauris sit
+      amet efficitur lorem.
+
+      Proin congue a ex sit amet semper. Mauris risus urna, vulputate vitae pretium ac, posuere sed ipsum. Maecenas ac
+      mollis magna. Nam tincidunt ac purus ut aliquam. Nam quis augue vehicula, mattis lorem ut, pulvinar felis. Mauris
+      sit amet dolor enim. Etiam pretium vitae ligula sit amet aliquet. Ut a venenatis lectus. Cras id augue facilisis
+      justo pharetra imperdiet id eget justo. In sit amet ipsum rutrum, consequat lorem vitae, vehicula ligula. Cras
+      dapibus volutpat massa eu tincidunt. Donec nec urna non libero posuere hendrerit. Donec at arcu eget magna tempus
+      auctor. Ut efficitur metus metus, at tristique ante vehicula eu.
+
+      Aliquam pellentesque turpis at elit ornare ultrices. Cras fringilla egestas urna id iaculis. Duis ut tempus lorem.
+      Nam vestibulum magna vitae elementum condimentum. Aliquam ac semper ligula, eget iaculis urna. Aliquam sodales
+      convallis ipsum, vel auctor libero aliquam sed. Quisque egestas nec odio commodo suscipit. Phasellus mauris leo,
+      sodales id ipsum non, vestibulum pretium leo. Fusce a aliquam diam, id molestie quam. Morbi tempor diam eu ex
+      viverra, a vulputate orci cursus. Phasellus et molestie sem. Nullam mollis augue a pellentesque commodo.
+
+      Fusce volutpat erat non nibh molestie viverra. Proin quis luctus diam, vitae auctor tortor. Donec cursus gravida
+      elementum. Donec sed fermentum orci, sit amet fringilla erat. Sed aliquam libero eu enim ullamcorper, in efficitur
+      ante pharetra. Morbi et sollicitudin urna. Nulla aliquet tristique lectus et volutpat. Etiam congue erat nunc, nec
+      tristique diam ornare eget. Ut bibendum tortor quis ligula finibus luctus. Fusce commodo lorem nunc, at mollis
+      nunc aliquet ut. Vestibulum consectetur tempor dui, convallis rutrum ipsum elementum ut. Vestibulum sed libero
+      ultricies, viverra ligula ac, placerat purus. Suspendisse at nisi ligula. Fusce interdum dui eros, in ullamcorper
+      augue pretium quis. Fusce luctus libero vel nunc condimentum, et maximus libero mollis. Interdum et malesuada
+      fames ac ante ipsum primis in faucibus.
+
+      Ut varius neque semper nibh maximus, quis elementum ligula hendrerit. Integer tincidunt neque eu laoreet
+      elementum. Nulla id massa malesuada, faucibus nisl ut, pulvinar augue. Phasellus varius nisi magna, nec ultrices
+      diam feugiat tristique. Integer ultricies lorem sed nisi porta, a pharetra justo tincidunt. Proin orci velit,
+      lobortis sit amet porttitor et, vehicula vel diam. Etiam ultrices posuere sapien, vehicula mattis odio tincidunt
+      vitae. Suspendisse nec nunc dignissim, dignissim nibh in, porta lectus. Donec dictum consequat sapien, in tempus
+      nunc blandit ac.
+
+      Duis viverra finibus leo, vitae pellentesque elit mollis eu. Phasellus bibendum malesuada ipsum mattis malesuada.
+      Mauris turpis quam, maximus id rhoncus eu, imperdiet ac eros. Donec in porttitor ante. Nullam quis mi gravida,
+      tincidunt erat in, iaculis nisi. Nam sed imperdiet tellus. Quisque eget felis vel ante scelerisque lacinia.
+      Curabitur non leo risus. Donec at congue risus. Vestibulum id scelerisque dui. Sed hendrerit purus sit amet urna
+      hendrerit semper. Cras congue congue nunc ac molestie. Sed venenatis tellus dolor. Donec semper eleifend molestie.
+
+      Fusce rutrum, neque a sodales pharetra, felis ex fermentum tortor, sit amet fermentum neque diam eu nibh. Aliquam
+      sapien dolor, dictum ac vulputate quis, vestibulum quis leo. In vehicula molestie odio non malesuada. Fusce quis
+      lacinia lorem. Maecenas bibendum congue metus ac porttitor. Sed tempus dapibus orci, sit amet ornare risus
+      tincidunt id. Integer vestibulum lacinia neque, vitae accumsan est lobortis id. Etiam consectetur eros et placerat
+      vehicula. Nullam at mauris libero. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras aliquam eleifend
+      metus, a vehicula tortor dignissim in. Mauris convallis efficitur ante, a tincidunt metus. Vestibulum vel leo
+      velit. Nam efficitur felis ut mi posuere tempor. In volutpat, justo in blandit euismod, felis dui lobortis turpis,
+      vitae laoreet odio nulla sit amet risus.
+
+      Donec interdum orci in eleifend vestibulum. Nulla facilisi. Vivamus pulvinar quis tortor ut elementum. In finibus
+      velit sed odio facilisis porta. Mauris vestibulum dictum enim at sollicitudin. Praesent accumsan nunc in odio
+      tristique, vel sagittis dui mattis. Nam placerat purus ut libero bibendum, vel convallis velit iaculis. In mattis
+      elementum augue, scelerisque rutrum sapien convallis id.
+
+      Quisque pharetra interdum elit, non rhoncus sem congue et. Sed finibus mollis tincidunt. Duis commodo quam eu
+      neque porttitor consectetur. In hendrerit quam eget purus venenatis suscipit. Nunc in sapien metus. Aliquam vitae
+      turpis in massa auctor viverra. Etiam eu congue nulla. Pellentesque sed nisi porttitor, ullamcorper massa a,
+      suscipit lectus. Nunc eu leo condimentum, mollis ligula in, eleifend felis. Etiam ac ante purus.
+
+      Maecenas congue non risus vitae elementum. Ut maximus urna molestie leo dapibus, eu tristique ex porta. Etiam
+      vitae nisi id mi faucibus pretium eget id neque. Aliquam erat volutpat. Phasellus at vehicula nisi, in accumsan
+      massa. Donec vel placerat nisi, id bibendum nisl. Sed quis tempor tellus, sodales volutpat diam. Nunc vitae
+      fermentum nisl. Donec non gravida sem, egestas vehicula sapien. Orci varius natoque penatibus et magnis dis
+      parturient montes, nascetur ridiculus mus.
+
+      Suspendisse id lorem dapibus, posuere metus at, placerat purus. Integer eget tincidunt mi, in consectetur dolor.
+      Nunc facilisis ante non diam rutrum commodo. Sed at nulla vestibulum, tincidunt leo non, sagittis risus. Aenean
+      auctor massa non magna tincidunt imperdiet. Donec sed mi et libero dapibus pellentesque non eu ex. Maecenas turpis
+      ligula, pharetra viverra massa at, cursus rhoncus nulla. Aliquam scelerisque enim eu diam cursus, et dictum erat
+      posuere. Ut ut nunc dignissim, luctus velit eget, ornare dolor. Nunc id augue turpis. In ut feugiat magna. Fusce
+      ut cursus quam, eu pharetra lacus. Curabitur felis ex, vestibulum eget feugiat eu, rhoncus ac arcu. Nullam justo
+      nisi, eleifend id arcu ac, vulputate molestie dui. Vestibulum sollicitudin, mi at viverra aliquet, velit magna
+      condimentum nibh, id auctor justo orci eget nulla.
+
+      Nam commodo augue tellus, eu scelerisque nisl elementum vel. Proin eu auctor dui. Ut iaculis non libero id
+      laoreet. Aliquam scelerisque libero in imperdiet blandit. Nunc non dui dolor. Nullam sit amet erat vitae leo
+      pulvinar posuere ac quis urna. Nam pretium turpis eget felis accumsan, et lacinia dui accumsan. Cras est augue,
+      lobortis cursus vulputate sed, maximus nec sem. Sed a sapien et lectus rhoncus iaculis. Phasellus egestas sit amet
+      orci sit amet vehicula. Nunc sed commodo turpis, ut ultricies tellus. Ut nec orci et risus varius imperdiet ut eu
+      tortor. Sed eu turpis lacinia, commodo justo et, iaculis magna. Morbi imperdiet auctor enim, vel gravida leo
+      consectetur id. Integer consectetur blandit odio, eleifend varius quam.
+
+      Aenean felis leo, convallis id enim fringilla, molestie ornare neque. Suspendisse id augue eget erat hendrerit
+      malesuada commodo quis purus. Pellentesque sit amet pulvinar justo, in semper lorem. Cras laoreet sed lorem sit
+      amet efficitur. Proin a nisi sed libero facilisis lacinia a vel dolor. Nullam faucibus, magna ac ornare volutpat,
+      massa dui placerat turpis, placerat vestibulum neque dui ac eros. Phasellus elementum, libero at lobortis viverra,
+      justo est maximus ligula, quis tincidunt velit tellus congue velit. Donec tempor tempus ex, eu efficitur turpis
+      ultricies vel. Duis dignissim nisl eu pharetra mollis. Duis augue felis, faucibus ut sem et, sollicitudin
+      convallis justo.
+    </div>
+    <div class="col">
+      One of three columns
+    </div>
+  </div>
+</div>
