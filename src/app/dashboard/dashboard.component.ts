@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Consumer} from '../consumer';
 import {ConsumerService} from '../consumer.service';
+import ObjectID from 'bson-objectid';
 
 @Component({
   selector: 'app-dashboard',
@@ -26,5 +27,8 @@ export class DashboardComponent implements OnInit {
 
   selectConsumer(consumer: Consumer) {
     console.log(consumer.id + 'was chosen');
+    const id: ObjectID = ObjectID.createFromHexString(consumer.id);
+    console.log(id);
+    this.consumerChosenMessage = 'consumer ' + id.id;
   }
 }

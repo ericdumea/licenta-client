@@ -13,55 +13,61 @@
         <div class="card-body">
           <h5 class="card-title">Go back</h5>
           <p class="card-text">Go back to provider overview page</p>
-          <a href="/provider-overview" class="btn btn-primary">Go back</a>
+          <a href="/provider-overview" class="btn btn-dark">Go back</a>
         </div>
       </div>
     </div>
 
 
     <div class="col-lg-8">
-      <form (ngSubmit)="onSubmit(providerData.value)" #providerData="ngForm">
-        <label for="basic-type">The type of the provider to be added:</label>
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon3">Type</span>
-          </div>
-          <input type="text" class="form-control" id="basic-type" aria-describedby="basic-addon3" name="providerType"
-                 [ngModel]="providerData.providerType">
-        </div>
+      <div class="card">
+        <div class="card-body">
+          <form (ngSubmit)="onSubmit(providerData.value)" #providerData="ngForm">
+            <label for="basic-type">The type of the provider to be added:</label>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon3">Type</span>
+              </div>
+              <input type="text" class="form-control" id="basic-type" aria-describedby="basic-addon3"
+                     name="providerType"
+                     [ngModel]="providerData.providerType">
+            </div>
 
-        <label for="basic-type">The price of the provider to be added for 24 hours:</label>
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text">$</span>
-          </div>
-          <input type="text" class="form-control" id="price" name="price" [ngModel]="providerData.price">
-          <div class="input-group-append">
-            <span class="input-group-text">.00</span>
-          </div>
-        </div>
+            <label for="basic-type">The price of the provider to be added for 24 hours:</label>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text">$</span>
+              </div>
+              <input type="text" class="form-control" id="price" name="price" [ngModel]="providerData.price">
+              <div class="input-group-append">
+                <span class="input-group-text">.00</span>
+              </div>
+            </div>
 
-        <label for="basic-type">The provider(s) (.txt file):</label>
-        <div class="input-group">
-          <div class="custom-file">
-            <input ng2FileSelect type="file" accept=".txt" [uploader]="uploader" class="custom-file-input"
-                   id="inputGroupFile04" aria-describedby="inputGroupFileAddon04">
-            <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
-          </div>
+            <label for="basic-type">The provider(s) (.txt file):</label>
+            <div class="input-group">
+              <div class="custom-file">
+                <input ng2FileSelect type="file" accept=".txt" [uploader]="uploader" class="custom-file-input"
+                       id="inputGroupFile04" aria-describedby="inputGroupFileAddon04">
+                <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
+              </div>
 
+            </div>
+            <br><br>
+            <p>
+              <button type="submit" class="btn btn-dark col justify-content-end">Upload provider</button>
+            </p>
+            <p>
+              <ngb-alert *ngIf="successMessage" type="success"
+                         (close)="successMessage = null">{{ successMessage }}</ngb-alert>
+            </p>
+            <p>
+              <ngb-alert *ngIf="failMessage" type="danger"
+                         (close)="failMessage = null">{{ failMessage }}</ngb-alert>
+            </p>
+          </form>
         </div>
-        <br><br>
-        <p>
-          <button type="submit" class="btn btn-dark">Upload info</button>
-        </p>
-        <p>
-          <ngb-alert *ngIf="successMessage" type="success"
-                     (close)="successMessage = null">{{ successMessage }}</ngb-alert>
-        </p><p>
-          <ngb-alert *ngIf="failMessage" type="danger"
-                     (close)="failMessage = null">{{ failMessage }}</ngb-alert>
-        </p>
-      </form>
+      </div>
     </div>
 
 

@@ -1,61 +1,91 @@
-<h1> Dashboard </h1>
+<h1 class="display-3"> Dashboard </h1>
 <div class="container-fluid">
   <div class="row">
     <div class="col">
       One of three columns
     </div>
     <div class="col-lg-8">
+      <div class="card">
+        <div class="card-body">
+          <h3 class="display-4 col justify-content-lg-center">Optimize</h3>
 
+          <form>
+            <div class="form-group ">
+              <label for="formGroupExampleInput">Example label</label>
+              <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input">
+            </div>
+            <div class="form-group">
+              <label for="formGroupExampleInput2">Another label</label>
+              <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input">
+            </div>
 
+            <table class="table table-hover table-dark">
+              <thead>
+              <tr>
+                <!--          <th scope="col">#</th>-->
+                <th scope="col">Name</th>
+                <th scope="col">Max Price</th>
+                <th scope="col">Energy needed / 24H</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let consumer of consumerList" (click)="selectConsumer(consumer)">
+                <!--          <th scope="row">{{provider.id}}</th>-->
+                <td>NAME PLACEHOLDER</td>
+                <td>{{consumer.price.toPrecision(4)}}</td>
+                <td>
+                  <!--            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">-->
+                  <!--              Graph-->
+                  <!--            </button>-->
+                  <ng-template #content let-modal>
+                    <div class="modal-header">
+                      <h4 class="modal-title" id="modal-basic-title">Provider #{{consumer.id}}</h4>
+                      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      ...
+                      <div style="display: block">
+                        <!--                  <canvas baseChart-->
+                        <!--                          [datasets]="dataSetGeneration(consumer.power)"-->
+                        <!--                          [labels]="chartLabels"-->
+                        <!--                          [legend]="barChartLegend"-->
+                        <!--                          [options]="lineChartOptions"-->
+                        <!--                          [chartType]="barChartType">-->
+                        <!--                  </canvas>-->
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close Graph')">Close
+                      </button>
+                    </div>
+                  </ng-template>
+                  <button class="btn btn-outline-primary mb-2 mr-2">Graph</button>
+                </td>
+              </tr>
+            </table>
 
+            <p>
+              <ngb-alert type="dark">You've selected smth //todo</ngb-alert>
+            </p>
 
+            <br><br>
+            <p>
+              <button type="submit" class="btn btn-dark col justify-content-end">Upload provider</button>
+            </p>
+          </form>
+          <!--          <p>-->
+          <!--            <ngb-alert *ngIf="successMessage" type="success"-->
+          <!--                       (close)="successMessage = null">{{ successMessage }}</ngb-alert>-->
+          <!--          </p>-->
+          <!--          <p>-->
+          <!--            <ngb-alert *ngIf="failMessage" type="danger"-->
+          <!--                       (close)="failMessage = null">{{ failMessage }}</ngb-alert>-->
+          <!--          </p>-->
 
-      <table class="table table-hover table-dark">
-        <thead>
-        <tr>
-          <!--          <th scope="col">#</th>-->
-          <th scope="col">Name</th>
-          <th scope="col">Max Price</th>
-          <th scope="col">Energy needed / 24H</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let consumer of consumerList" (click)="selectConsumer(consumer)" >
-          <!--          <th scope="row">{{provider.id}}</th>-->
-          <td>NAME PLACEHOLDER</td>
-          <td>{{consumer.price.toPrecision(4)}}</td>
-          <td>
-            <!--            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">-->
-            <!--              Graph-->
-            <!--            </button>-->
-            <ng-template #content let-modal>
-              <div class="modal-header">
-                <h4 class="modal-title" id="modal-basic-title">Provider #{{consumer.id}}</h4>
-                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                ...
-                <div style="display: block">
-<!--                  <canvas baseChart-->
-<!--                          [datasets]="dataSetGeneration(consumer.power)"-->
-<!--                          [labels]="chartLabels"-->
-<!--                          [legend]="barChartLegend"-->
-<!--                          [options]="lineChartOptions"-->
-<!--                          [chartType]="barChartType">-->
-<!--                  </canvas>-->
-                </div>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close Graph')">Close</button>
-              </div>
-            </ng-template>
-            <button class="btn btn-outline-primary mb-2 mr-2">Graph</button>
-          </td>
-        </tr>
-      </table>
-
+        </div>
+      </div>
 
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lectus sem, lacinia eget imperdiet id, commodo
       non libero. Etiam lobortis suscipit convallis. Morbi semper libero turpis, et convallis nibh tristique et. Aliquam
