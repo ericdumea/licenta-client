@@ -16,6 +16,7 @@ export class ProviderInsertionComponent implements OnInit {
   fileName: string;
   successMessage: string;
   failMessage: string;
+  fileMessage = 'Choose file.';
 
 
   constructor(private providerInsertService: ProviderInsertService,
@@ -23,7 +24,7 @@ export class ProviderInsertionComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.uploader = new FileUploader({url: 'http://localhost:8080/api/provider-upload', removeAfterUpload: false, autoUpload: false});
+    this.uploader = new FileUploader({url: 'http://localhost:8080/api/file-upload', removeAfterUpload: false, autoUpload: false});
 
     this.uploader.onCompleteAll = () => this.providerInsertService.addNewProvider(this.fileName, this.providerData).subscribe(null,
       error1 => {
@@ -38,13 +39,16 @@ export class ProviderInsertionComponent implements OnInit {
   }
 
   onSubmit(providerFormData: ProviderFormData) {
+
     if (this.uploader.getNotUploadedItems().length === 0) {
       this.failMessage = 'Please select a file.';
       return;
     }
+
     console.log('object', providerFormData);
     const file: FileLikeObject = this.uploader.getNotUploadedItems()[0].file;
     this.fileName = file.name;
+    file.name = Date.now() + file.name;
 
     console.log(file.name);
     if (isNaN(providerFormData.price)) {
@@ -53,13 +57,16 @@ export class ProviderInsertionComponent implements OnInit {
 
     }
 
-    if(providerFormData.providerType === undefined ){
+    if (providerFormData.providerType === undefined || providerFormData.providerType.length === 0) {
       this.failMessage = 'Please insert a valid type for the producer(s).';
       return;
     }
 
     this.providerData = providerFormData;
-
     this.uploader.uploadAll();
+  }
+
+  changeMessage() {
+    this.fileMessage = this.uploader.getNotUploadedItems()[0].file.name;
   }
 }

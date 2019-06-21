@@ -14,6 +14,8 @@ import { ConsumerOverviewComponent } from './consumer-overview/consumer-overview
 import { ProviderInsertionComponent } from './provider-insertion/provider-insertion.component';
 import {FileUploadModule} from 'ng2-file-upload';
 import {FormsModule} from '@angular/forms';
+import { ConsumerInsertionComponent } from './consumer-insertion/consumer-insertion.component';
+import { ResultsPageComponent } from './results-page/results-page.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import {FormsModule} from '@angular/forms';
     DashboardComponent,
     SidebarComponent,
     ConsumerOverviewComponent,
-    ProviderInsertionComponent
+    ProviderInsertionComponent,
+    ConsumerInsertionComponent,
+    ResultsPageComponent
   ],
   imports: [
     BrowserModule,
