@@ -4,22 +4,21 @@
         <div class="col">
         </div>
         <div class="col-lg-8 justify-content-center" style="padding-top: 1em">
-            <h1 class="display-3"> Dashboard </h1>
-            <br>
+            <h1 class="display-4">Identify the energy producers coalitions</h1>
         </div>
         <div class="col">
         </div>
     </div>
-
+    <hr>
     <div class="row">
         <div class="col">
-            One of three columns
+
         </div>
         <div class="col-lg-8">
             <div class="card">
                 <div class="card-body">
-                    <h3 class="display-4 col justify-content-lg-center">Optimize</h3>
-                    <hr>
+<!--                    <h3 class="display-4 col justify-content-lg-center">Optimize</h3>-->
+<!--                    <hr>-->
                     <form (ngSubmit)="onSubmit(formData.value)" #formData="ngForm">
                         <div class="form-row" style="padding-bottom: 1rem ; padding-top: 1rem">
                             <div class="col">
@@ -34,11 +33,11 @@
                                 <div class="input-group-append">
                                     <span class="input-group-text">%</span>
                                 </div>
-                              <div style="padding-left: 0.5rem">
-                                <button [hidden]="!formFlag[0]" class="btn btn-dark" type="button"
-                                         (click)="btn0click()">Add
-                                </button>
-                              </div>
+                                <div style="padding-left: 0.5rem">
+                                    <button [hidden]="!formFlag[0]" class="btn btn-dark" type="button"
+                                            (click)="btn0click()">Add
+                                    </button>
+                                </div>
                             </div>
 
                         </div>
@@ -55,11 +54,11 @@
                                 <div class="input-group-append">
                                     <span class="input-group-text">%</span>
                                 </div>
-                              <div style="padding-left: 0.5rem">
-                                <button [hidden]="!formFlag[1]" class="btn btn-dark" type="button"
-                                         (click)="btn1click()">Add
-                                </button>
-                              </div>
+                                <div style="padding-left: 0.5rem">
+                                    <button [hidden]="!formFlag[1]" class="btn btn-dark" type="button"
+                                            (click)="btn1click()">Add
+                                    </button>
+                                </div>
                             </div>
 
                         </div>
@@ -76,11 +75,11 @@
                                 <div class="input-group-append">
                                     <span class="input-group-text">%</span>
                                 </div>
-                              <div style="padding-left: 0.5rem">
-                                <button [hidden]="!formFlag[2]" class="btn btn-dark" type="button"
-                                         (click)="btn2click()">Add
-                                </button>
-                              </div>
+                                <div style="padding-left: 0.5rem">
+                                    <button [hidden]="!formFlag[2]" class="btn btn-dark" type="button"
+                                            (click)="btn2click()">Add
+                                    </button>
+                                </div>
                             </div>
 
                         </div>
@@ -112,18 +111,27 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr *ngFor="let consumer of consumerList" (click)="selectConsumer(consumer)">
+                            <tr *ngFor="let consumer of consumerList">
                                 <!--          <th scope="row">{{provider.id}}</th>-->
-                                <td>NAME PLACEHOLDER</td>
+                                <td>{{consumer.name}}</td>
                                 <td>{{consumer.price.toPrecision(4)}}</td>
                                 <td>
-                                    <!--            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">-->
-                                    <!--              Graph-->
-                                    <!--            </button>-->
+                                    <div style="padding-left: 0px">
+                                        <button class="btn btn-outline-primary mb-2 mr-2" type="button"
+                                                data-toggle="modal" data-target="#exampleModal"
+                                                (click)="openLg(content)">Graph
+                                        </button>
+                                    </div>
+                                    <div>
+                                        <button class="btn btn-outline-primary mb-2 mr-2" type="button"
+                                                (click)="selectConsumer(consumer)">Select
+                                        </button>
+                                    </div>
+
                                     <ng-template #content let-modal>
                                         <div class="modal-header">
                                             <h4 class="modal-title" id="modal-basic-title">Provider
-                                                #{{consumer.id}}</h4>
+                                                #{{consumer.name}}</h4>
                                             <button type="button" class="close" aria-label="Close"
                                                     (click)="modal.dismiss('Cross click')">
                                                 <span aria-hidden="true">&times;</span>
@@ -132,13 +140,13 @@
                                         <div class="modal-body">
                                             ...
                                             <div style="display: block">
-                                                <!--                  <canvas baseChart-->
-                                                <!--                          [datasets]="dataSetGeneration(consumer.power)"-->
-                                                <!--                          [labels]="chartLabels"-->
-                                                <!--                          [legend]="barChartLegend"-->
-                                                <!--                          [options]="lineChartOptions"-->
-                                                <!--                          [chartType]="barChartType">-->
-                                                <!--                  </canvas>-->
+                                                <canvas baseChart
+                                                        [datasets]="dataSetGeneration(consumer.power)"
+                                                        [labels]="chartLabels"
+                                                        [legend]="barChartLegend"
+                                                        [options]="lineChartOptions"
+                                                        [chartType]="barChartType">
+                                                </canvas>
                                             </div>
                                         </div>
                                         <div class="modal-footer">
@@ -147,39 +155,41 @@
                                             </button>
                                         </div>
                                     </ng-template>
-                                    <button class="btn btn-outline-primary mb-2 mr-2">Graph</button>
                                 </td>
                             </tr>
                         </table>
 
-                      <div style="padding-bottom: 1rem">
-                        <p>
-                            <ngb-alert type="dark" *ngIf="consumerChosenMessage"
-                                       (close)="consumerChosenMessage = null">{{ consumerChosenMessage }}</ngb-alert>
-                        </p>
-                      </div>
+                        <div style="padding-bottom: 1rem">
+                            <p>
+                                <ngb-alert type="dark" *ngIf="consumerChosenMessage"
+                                           (close)="consumerChosenMessage = null">{{ consumerChosenMessage }}</ngb-alert>
+                            </p>
+                        </div>
                         <hr>
                         <p>
-                            <button type="submit" class="btn btn-dark col justify-content-end">Upload provider</button>
+                            <button type="submit" class="btn btn-dark col justify-content-end">OPTIMIZE</button>
                         </p>
                     </form>
                     <hr>
-                    <!--                              <p>-->
-                    <!--                                <ngb-alert *ngIf="successMessage" type="success"-->
-                    <!--                                           (close)="successMessage = null">{{ successMessage }}</ngb-alert>-->
-                    <!--                              </p>-->
-                    <!--                              <p>-->
-                    <!--                                <ngb-alert *ngIf="failMessage" type="danger"-->
-                    <!--                                           (close)="failMessage = null">{{ failMessage }}</ngb-alert>-->
-                    <!--                              </p>-->
+                    <p>
+                        <ngb-alert *ngIf="successMessage" type="success"
+                                   (close)="successMessage = null">{{ successMessage }}</ngb-alert>
+                    </p>
+                    <p>
+                        <ngb-alert *ngIf="failMessage" type="danger"
+                                   (close)="failMessage = null">{{ failMessage }}</ngb-alert>
+                    </p>
+                    <div class="d-flex justify-content-center" *ngIf="loading">
+                        <div class="spinner-border" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                    </div>
 
                 </div>
             </div>
         </div>
 
-
         <div class="col">
-
             <div class="col">
                 <div class="card" style="width: 13rem;">
                     <div class="card-body">
@@ -198,8 +208,28 @@
                         </form>
                     </div>
                 </div>
-            </div>
+<hr>
+                <div class="card" style="width: 13rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Timeslot</h5>
+                        <p class="card-text">Change algorithm parameters</p>
+                        <form (ngSubmit)="setHoursForAlgo(algoData1.value)" #algoData1="ngForm">
+                            <div style="padding-bottom: 1rem">
+                                <input class="form-control" type="text" placeholder="Start Hour" name="startHour" [ngModel]="algoData1.startHour">
+                            </div>
+                            <div style="padding-bottom: 1rem">
+                                <input class="form-control" type="text" placeholder="End Hour" name="endHour" [ngModel]="algoData1.endHour">
+                            </div>
+                            <button class="btn btn-dark col justify-content-end" type="submit">Change</button>
+                            <p>
+                                <ngb-alert *ngIf="changedHour" type="success"
+                                           (close)="changedHour = null">{{ changedHour }}</ngb-alert>
+                            </p>
+                        </form>
+                    </div>
+                </div>
 
+            </div>
         </div>
     </div>
 </div>

@@ -1,72 +1,80 @@
-<h1> Insert a consumer </h1>
-<br>
 <div class="container-fluid">
-  <div class="row" style="width: 2rem;">
-    <div class="col-lg-10">
+    <div class="row">
+        <div class="col">
 
-    </div>
-  </div>
-  <div class="row">
-
-    <div class="col">
-      <div class="card" style="width: 13rem;">
-        <div class="card-body">
-          <h5 class="card-title">Consumer Overview</h5>
-          <a href="/consumer-overview" class="btn btn-dark">Go back</a>
         </div>
-      </div>
-    </div>
-
-
-    <div class="col-lg-8">
-      <div class="card">
-        <div class="card-body">
-          <form (ngSubmit)="onSubmit(consumerData.value)" #consumerData="ngForm">
-            <label for="basic-type">The name of the consumer:</label>
-            <div class="input-group mb-3">
-              <input type="text" class="form-control" id="basic-type" aria-describedby="basic-addon3"
-                     name="name"
-                     [ngModel]="consumerData.name">
-            </div>
-
-            <label for="basic-type">Price:</label>
-            <div class="input-group mb-3">
-              <input type="text" class="form-control" id="price" name="price" [ngModel]="consumerData.price">
-              <div class="input-group-append">
-                <span class="input-group-text">EUR</span>
-              </div>
-            </div>
-
-            <label for="basic-type">The consumer(s) (.txt file):</label>
-            <div class="input-group">
-              <div class="custom-file">
-                <input ng2FileSelect type="file" accept=".txt" [uploader]="uploader" class="custom-file-input"
-                       id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" (onFileSelected)="changeFileNime()">
-                <label class="custom-file-label" for="inputGroupFile04">{{fileNameHolder}}</label>
-              </div>
-
-            </div>
-            <br><br>
-            <p>
-              <button type="submit" class="btn btn-dark col justify-content-end">Upload consumer</button>
-            </p>
-            <p>
-              <ngb-alert *ngIf="successMessage" type="success"
-                         (close)="successMessage = null">{{ successMessage }}</ngb-alert>
-            </p>
-            <p>
-              <ngb-alert *ngIf="failMessage" type="danger"
-                         (close)="failMessage = null">{{ failMessage }}</ngb-alert>
-            </p>
-          </form>
+        <div class="col-lg-8 justify-content-center" style="padding-top: 1em">
+            <h1 class="display-4">Insert Consumer</h1>
         </div>
-      </div>
-    </div>
+        <div class="col">
 
-    <div class="col">
-      One of three columns
+        </div>
     </div>
+    <hr>
+    <div class="row">
 
-  </div>
+        <div class="col">
+            <div class="card" style="width: 13rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Consumer Overview</h5>
+                    <a href="/consumer-overview" class="btn btn-dark">Go back</a>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-lg-8">
+            <div class="card">
+                <div class="card-body">
+                    <form (ngSubmit)="onSubmit(consumerData.value)" #consumerData="ngForm">
+                        <label for="basic-type">The name of the consumer:</label>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" id="basic-type" aria-describedby="basic-addon3"
+                                   name="name"
+                                   [ngModel]="consumerData.name">
+                        </div>
+
+                        <label for="basic-type">Price:</label>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" id="price" name="price"
+                                   [ngModel]="consumerData.price">
+                            <div class="input-group-append">
+                                <span class="input-group-text">EUR</span>
+                            </div>
+                        </div>
+
+                        <label for="basic-type">The consumer(s) (.txt file):</label>
+                        <div class="input-group">
+                            <div class="custom-file">
+                                <input ng2FileSelect type="file" accept=".txt" [uploader]="uploader"
+                                       class="custom-file-input"
+                                       id="inputGroupFile04" aria-describedby="inputGroupFileAddon04"
+                                       (onFileSelected)="changeFileNime()">
+                                <label class="custom-file-label" for="inputGroupFile04">{{fileNameHolder}}</label>
+                            </div>
+
+                        </div>
+                        <br><br>
+                        <p>
+                            <button type="submit" class="btn btn-dark col justify-content-end">Upload consumer</button>
+                        </p>
+                        <p>
+                            <ngb-alert *ngIf="successMessage" type="success"
+                                       (close)="successMessage = null">{{ successMessage }}</ngb-alert>
+                        </p>
+                        <p>
+                            <ngb-alert *ngIf="failMessage" type="danger"
+                                       (close)="failMessage = null">{{ failMessage }}</ngb-alert>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+
+        </div>
+
+    </div>
 </div>
 

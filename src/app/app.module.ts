@@ -16,6 +16,7 @@ import {FileUploadModule} from 'ng2-file-upload';
 import {FormsModule} from '@angular/forms';
 import { ConsumerInsertionComponent } from './consumer-insertion/consumer-insertion.component';
 import { ResultsPageComponent } from './results-page/results-page.component';
+import { LoadingScreenComponent } from './loading-screen/loading-screen.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { ResultsPageComponent } from './results-page/results-page.component';
     ConsumerOverviewComponent,
     ProviderInsertionComponent,
     ConsumerInsertionComponent,
-    ResultsPageComponent
+    ResultsPageComponent,
+    LoadingScreenComponent
   ],
   imports: [
     BrowserModule,

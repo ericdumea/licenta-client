@@ -1,10 +1,10 @@
 <div class="container-fluid">
 
     <div class="row justify-content-center">
-        <div class="col">
+        <div class="col-lg-1">
         </div>
-        <div class="col-lg-10 justify-content-center" style="padding-top: 1em">
-            <h1 class="display-3"> Results </h1>
+        <div class="col-lg-7 justify-content-center" style="padding-top: 1em">
+            <h1 class="display-4"> Resulted coalitions of energy providers </h1>
             <br>
         </div>
         <div class="col">
@@ -12,15 +12,15 @@
     </div>
 
     <div class="row">
-        <div class="col">
-            One of three columns
+        <div class="col-lg-1">
+
         </div>
 
-        <div class="col-lg-10">
+        <div class="col-lg-7">
             <div class="card">
                 <div class="card-body">
                     <canvas baseChart
-                            [datasets]="dataSetGeneration()"
+                            [datasets]="chartData"
                             [labels]="chartLabels"
                             [legend]="barChartLegend"
                             [options]="lineChartOptions"
@@ -31,8 +31,69 @@
         </div>
 
         <div class="col">
-            One of three columns
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Total Consumed Energy:</h5>
+                    {{sumConsumed.toPrecision(7)}}  (kWh)
+                    <hr>
+                    <h5 class="card-title">Total Produced Energy:</h5>
+                    {{sumProduced.toPrecision(7)}}  (kWh)
+                </div>
+            </div>
+            <br>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Providers Activated:</h5>
+                    {{energyProvided.providerInfoList[0].nrOfProvidersActivated}}
+                    <hr>
+                    <h5 class="card-title">Price of the providers' coalition:</h5>
+                    {{energyProvided.providerInfoList[0].price.toPrecision(7)}}
+                    <hr>
+                    <div *ngFor="let providerInfo of energyProvided.providerInfoList">
+                        <h5 class="card-title">Providers of type {{providerInfo.providerType}} activated:</h5>
+                        {{providerInfo.actualPercentage}}% (actual) / {{providerInfo.desiredPercentage}}% (demanded)
+                    </div>
+                </div>
+            </div>
         </div>
 
+
+    </div>
+
+    <hr>
+
+    <div class="row">
+        <div class="col-sm">
+
+        </div>
+        <div class="col">
+            <table class="table table-hover table-dark" *ngIf="flag">
+                <thead>
+                <tr>
+                    <th></th>
+                    <th *ngFor="let label of chartLabels">{{label}}</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Energy Consumed</td>
+                    <td *ngFor="let consumer of energyProvided.consumerDTO.power">{{consumer.toPrecision(2)}}</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Energy Produced</td>
+                    <td *ngFor="let prod of energyProvided.computedEnergy">{{prod.toPrecision(2)}}</td>
+                    <td></td>
+                </tr>
+                <tr *ngIf="fitnessValues">
+                    <td>Fitness Value</td>
+                    <td *ngFor="let fitness of fitnessValues">{{fitness.toPrecision(2)}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-sm">
+
+        </div>
     </div>
 </div>
