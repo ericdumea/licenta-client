@@ -112,11 +112,11 @@ export class DashboardComponent implements OnInit {
   setHoursForAlgo(formData: AlgoHoursData) {
 
     if (formData.startHour > formData.endHour) {
-      this.failMessage = 'Please select reasonable hours.';
+      this.failMessage = 'Please select reasonable hours. (The start hour can\'t be more than the end hour';
       return;
     }
     if (formData.startHour < 0 || formData.startHour > 24 || formData.endHour < 0 || formData.endHour > 23) {
-      this.failMessage = 'Please select reasonable hours.';
+      this.failMessage = 'Please select reasonable hours. (0-24)';
       return;
     }
     this.algorithmParam.startHour = formData.startHour;
@@ -183,11 +183,15 @@ export class DashboardComponent implements OnInit {
       return;
     }
 
-    const percentage = this.providerType.map(provider => provider.percentage).reduce((sum, current) => sum + current);
+    let percentage: number = 0;
+    for (let i = 0; i < this.providerType.length; i++) {
+      percentage += this.providerType[i].percentage;
+    }
+    console.log(percentage);
     if (percentage === 0 || percentage > 90) {
       this.failMessage = 'Please choose reasonable percentages for the provider types.';
       this.providerType = [];
-      console.log(percentage);
+      console.log(percentage + ' ');
       return;
     }
 

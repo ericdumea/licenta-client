@@ -30,21 +30,21 @@
                             <!--          <th scope="col">#</th>-->
                             <th scope="col">Name</th>
                             <th scope="col">Max Price</th>
-                            <th scope="col">Energy needed / 24H</th>
+                            <th scope="col">Energy demanded (24h)</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr *ngFor="let consumer of consumerList">
                             <!--          <th scope="row">{{provider.id}}</th>-->
-                            <td>NAME PLACEHOLDER</td>
-                            <td>{{consumer.price.toPrecision(4)}}</td>
+                            <td>{{consumer.name}}</td>
+                            <td>{{consumer.price.toPrecision(4)}} EUR</td>
                             <td>
                                 <!--            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">-->
                                 <!--              Graph-->
                                 <!--            </button>-->
                                 <ng-template #content let-modal>
                                     <div class="modal-header">
-                                        <h4 class="modal-title" id="modal-basic-title">Provider #{{consumer.id}}</h4>
+                                        <h4 class="modal-title" id="modal-basic-title">Consumer {{consumer.name}}</h4>
                                         <button type="button" class="close" aria-label="Close"
                                                 (click)="modal.dismiss('Cross click')">
                                             <span aria-hidden="true">&times;</span>

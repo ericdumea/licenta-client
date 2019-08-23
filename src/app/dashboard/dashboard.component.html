@@ -114,7 +114,7 @@
                             <tr *ngFor="let consumer of consumerList">
                                 <!--          <th scope="row">{{provider.id}}</th>-->
                                 <td>{{consumer.name}}</td>
-                                <td>{{consumer.price.toPrecision(4)}}</td>
+                                <td>{{consumer.price.toPrecision(4)}} EUR</td>
                                 <td>
                                     <div style="padding-left: 0px">
                                         <button class="btn btn-outline-primary mb-2 mr-2" type="button"
@@ -131,7 +131,7 @@
                                     <ng-template #content let-modal>
                                         <div class="modal-header">
                                             <h4 class="modal-title" id="modal-basic-title">Provider
-                                                #{{consumer.name}}</h4>
+                                                {{consumer.name}}</h4>
                                             <button type="button" class="close" aria-label="Close"
                                                     (click)="modal.dismiss('Cross click')">
                                                 <span aria-hidden="true">&times;</span>
@@ -194,14 +194,16 @@
                 <div class="card" style="width: 13rem;">
                     <div class="card-body">
                         <h5 class="card-title">(Optional)</h5>
-                        <p class="card-text">Change algorithm parameters</p>
+                        <p class="card-text">Adjustable Parameters</p>
                         <form (ngSubmit)="changeParameters(algoData.value)" #algoData="ngForm">
+                            <label for="noF">Number of Fireflies</label>
                             <div style="padding-bottom: 1rem">
-                                <input class="form-control" type="text" placeholder="Fireflies" name="fireflies"
+                                <input class="form-control" id="noF" type="text" placeholder="NoFireflies" name="fireflies"
                                        [ngModel]="algoData.fireflies">
                             </div>
+                            <label for="noIt">Number of iterations:</label>
                             <div style="padding-bottom: 1rem">
-                                <input class="form-control" type="text" placeholder="Iterations" name="iterations"
+                                <input class="form-control" id="noIt" type="text" placeholder="NoIterations" name="iterations"
                                        [ngModel]="algoData.iterations">
                             </div>
                             <button class="btn btn-dark col justify-content-end" type="submit">Change</button>
